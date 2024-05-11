@@ -1,0 +1,9 @@
+{
+    "name": "IPTV",
+    "input_path": "http://raw.githubusercontent.com/HongtengXu/Hawkes-Process-Toolkit/master/Data",
+    "output_path": "data/input",
+    "time_divisor": 86400.0,
+    "max_seq_length": 1000,
+    "n_splits": 5,
+    "rand_seed": 0
+}

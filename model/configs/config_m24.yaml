@@ -1,0 +1,69 @@
+
+dir_name: tensorboard/model/
+task_name: causalnet
+
+log:
+  stdout: false
+  stderr: false
+  tensorboard: true
+
+
+dataset: 24V_439N_Microwave  # 24V_439N_Microwave  25V_474N_Microwave
+
+
+reproduc:
+  seed: 42  # 42, 2023, 2024
+  benchmark: false
+  deterministic: true
+
+
+model:  
+  dataset: # dataset-specific params
+    input_format: data  # data, data_topo
+    ##
+    n_nodes: None
+    n_topos: None
+    ##
+    max_hop: 1
+    max_time_lag: 120
+    max_seq_len: 45
+
+  data_pred:
+    d_model: 512
+    d_inner_hid: 1024
+    n_layers: 4
+    n_head: 4
+    d_k: 512
+    d_v: 512
+    dropout: 0.1
+    smooth: 0.1
+    ##
+    lr_data_start: 1e-4
+    lr_data_end: 1e-5
+    weight_decay: 0.001
+
+  graph_discov:
+    start_tau: 1
+    end_tau: 0.1
+    ##
+    lr_graph_start: 4e-2
+    lr_graph_end: 4e-3
+    ##
+    lr_decay_start: 4e-2
+    lr_decay_end: 4e-3
+
+  loss:
+    lmd_l: 10  # likelihood, time, type, sparsity, dagness
+    lmd_a1: 1
+    lmd_a2: 1
+    lmd_a3: 1
+    lmd_s: 0.1
+    lmd_d: 0.1
+
+  batch_size: 512
+  total_epoch: 200
+  
+  causal_thres: 0.25
+  show_graph_every: 2
+
+    
